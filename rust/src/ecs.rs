@@ -141,14 +141,12 @@ impl Ecs {
             self.world.init_resource::<State<S>>();
             self.world.init_resource::<NextState<S>>();
 
-            self.add_systems(
-                StateTransition,
-                (
-                    run_enter_schedule::<S>.run_if(run_once()),
-                    apply_state_transition::<S>,
-                )
-                    .chain(),
+            let state_systems = (
+                run_enter_schedule::<S>.run_if(run_once()),
+                apply_state_transition::<S>,
             );
+
+            self.add_systems(StateTransition, state_systems.chain());
         }
 
         self
