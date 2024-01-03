@@ -10,5 +10,10 @@ config_version=5
 
 [application]
 
+config/name="Gladiator RPG"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2")
+
+[editor]
+
+naming/node_name_casing=2
